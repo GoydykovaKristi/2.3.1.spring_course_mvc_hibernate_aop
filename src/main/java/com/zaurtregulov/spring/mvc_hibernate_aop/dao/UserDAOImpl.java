@@ -31,23 +31,21 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public User getUserById(long id) {
 
-         User user = entityManager.find(User.class, id);
-         return  user;
+
+         return entityManager.find(User.class, id);
     }
 
     @Override
     public void updateUser(User updateUser, long id) {
-        User personToBeUpdated = getUserById(id);
-        personToBeUpdated.setName(updateUser.getName());
-        personToBeUpdated.setSurname(updateUser.getSurname());
-        personToBeUpdated.setAge(updateUser.getAge());
-        personToBeUpdated.setEmail(updateUser.getEmail());
-    }
+
+        entityManager.merge(updateUser);
+   }
 
     @Override
     public void deleteUser(long id) {
         User user = entityManager.find(User.class, id);
-        entityManager.remove(user);
+        entityManager.remove(user); // если объединить, то в данном случае,
+        // теряется легкочитаемость кода, как мне кажется)
     }
 
 }
