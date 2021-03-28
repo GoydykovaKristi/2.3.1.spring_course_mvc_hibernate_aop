@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 import java.util.List;
 
@@ -22,10 +22,11 @@ public class UsersController {
 
     @Autowired
     public UsersController(UserService userService) {
+
         this.userService = userService;
     }
 
-    @GetMapping("/")
+    @GetMapping()
     public String showAllUsers(Model model){
         List<User> allUsers = userService.getAllUsers();
         model.addAttribute("allUsers", allUsers);

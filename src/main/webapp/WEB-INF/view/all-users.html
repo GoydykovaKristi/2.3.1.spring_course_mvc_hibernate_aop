@@ -22,8 +22,13 @@
         <td th:utext="${user.getSurname()}"></td>
         <td th:utext="${user.getAge()}"></td>
         <td th:utext="${user.getEmail()}"></td>
-        <td><a th:href="@{/{id}/edit(id=${user.getId()})}">Edit</a></td>
-        <td><a th:href="@{/{id}(id=${user.getId()})}">Delete</a></td>
+        <td><form th:method="GET" th:action="@{/{id}/edit(id=${user.getId()})}">
+            <input type="submit" value="Edit"/>
+        </form> </td>
+        <td><form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}">
+            <input type="submit" value="Delete"/>
+        </form> </td>
+</form>
 
     </tr>
 </table>
@@ -33,7 +38,6 @@
 <form th:method="GET" th:action="@{/new}">
     <input type="submit" value="Create New User"/>
 </form>
-
 
 </body>
 </html>
